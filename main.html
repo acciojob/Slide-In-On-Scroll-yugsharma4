@@ -238,28 +238,39 @@
         };
       }
 
-      //slide-in logic
-      const sliders = document.querySelectorAll(".slide-in");
-      const appearOptions = {
-        threshold: 1, //1 --> entire section 0 --> animation occurs whenever hit that section
-        rootMargin: "-100px 0px 0px 0px",
-      };
-
-      const appearOnScroll = new IntersectionObserver(function (
-        entries,
-        appearOnScroll
-      ) {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("active");
-          appearOnScroll.unobserve(entry.target);
+		const sliders = document.querySelectorAll(".slide-in");
+      window.addEventListener("scroll", () => {
+        sliders.forEach((slider) => {
+          let position = slider.getBoundingClientRect();
+          //fully visible
+          if (position.top >= 0 && position.bottom <= window.innerHeight) {
+            slider.classList.add("active");
+          }
         });
-      },
-      appearOptions);
-
-      sliders.forEach((slider) => {
-        appearOnScroll.observe(slider);
       });
+
+      //slide-in logic
+      // const sliders = document.querySelectorAll(".slide-in");
+      // const appearOptions = {
+      //   threshold: 1, //1 --> entire section 0 --> animation occurs whenever hit that section
+      //   rootMargin: "-100px 0px 0px 0px",
+      // };
+
+      // const appearOnScroll = new IntersectionObserver(function (
+      //   entries,
+      //   appearOnScroll
+      // ) {
+      //   entries.forEach((entry) => {
+      //     if (!entry.isIntersecting) return;
+      //     entry.target.classList.add("active");
+      //     appearOnScroll.unobserve(entry.target);
+      //   });
+      // },
+      // appearOptions);
+
+      // sliders.forEach((slider) => {
+      //   appearOnScroll.observe(slider);
+      // });
     </script>
 
     <style>
