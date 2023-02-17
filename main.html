@@ -254,9 +254,24 @@
 
 		const handleClass = () => {
 			const scrolledImages = document.querySelectorAll(".slide-in");
+
+			scrolledImages.forEach(img => {
+				const scrolledHeight = window.scrollY  + window.innerHeight - img.height/2;
+				const heightTillBottomImg = img.offsetTop + img.height;
+
+				const isImgFullyVisible = window.scrollY > heightTillBottomImg;
+				const isImgHalfVisible = scrolledHeight > img.offsetTop;
+
+				if(isImgHalfVisible && !isImgFullyVisible){
+					img.classList.add("active");
+				}else{
+					img.classList.remove("active");
+					
+				}
+			})
 			
 		}
-		 window.addEventListener("scroll", debounce(addActiveClass));
+		 window.addEventListener("scroll", debounce(handleClass));
 
 		
 
