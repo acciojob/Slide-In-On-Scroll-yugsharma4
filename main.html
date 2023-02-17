@@ -240,18 +240,25 @@
 
 		const addActiveClass = () => {
 				const sliders = document.querySelectorAll(".slide-in");
-	      window.addEventListener("scroll", () => {
-	        sliders.forEach((slider) => {
+				 sliders.forEach((slider) => {
 	          let position = slider.getBoundingClientRect();
 	          //fully visible
 	          if (position.top >= 0 && position.bottom <= window.innerHeight) {
 	            slider.classList.add("active");
 	          }
+			  // else{
+				 //  slider.classList.remove("active");
+			  // }
 	        });
-	      });
 		}
 
-		debounce(addActiveClass)();
+		const handleClass = () => {
+			const scrolledImages = document.querySelectorAll(".slide-in");
+			
+		}
+		 window.addEventListener("scroll", debounce(addActiveClass));
+
+		
 
 		
 
